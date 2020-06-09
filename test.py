@@ -4,6 +4,20 @@ from selenium.webdriver.common.by import By
 from selenium.webdriver.common.keys import Keys
 import time
 
+'''
+for item in dados_conta.keys():
+     print(item)
+     
+agencia
+conta
+dac
+for item in dados_conta.keys():
+     print(dados_conta[item])
+     
+0000
+1234
+5
+'''
 
 def my_func():
     driver = webdriver.Chrome()
