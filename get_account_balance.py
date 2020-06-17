@@ -66,6 +66,8 @@ def my_func():
 
         print(quadro_saldo.text)
 
+        driver.save_screenshot('screenshot.png')
+
     except AssertionError:
         print("error!")
 
