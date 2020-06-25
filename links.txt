@@ -1,3 +1,6 @@
 
 # Page Objects
 https://selenium-python.readthedocs.io/page-objects.html
+
+# Waits Selenium Python 2.7
+https://youtu.be/Ho7zzgfh4bQ
