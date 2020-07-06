@@ -60,7 +60,7 @@ def my_func():
             a = driver.find_element(By.XPATH,
                                     '//a[contains(text(), "' + item + '")]')
             a.click()
-            #time.sleep(1)
+            # time.sleep(1)
 
         driver.find_element_by_id('acessar').click()
 
@@ -81,8 +81,7 @@ def my_func():
 
 
 if __name__ == "__main__":
-    x = threading.Thread(target=my_func, args=())
-    x.start()
-    time.sleep(10)
-    y = threading.Thread(target=my_func, args=())
-    y.start()
+    for i in range(2):
+        x = threading.Thread(target=my_func, args=())
+        x.start()
+        time.sleep(10)
