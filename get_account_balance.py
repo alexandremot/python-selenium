@@ -11,17 +11,8 @@ from selenium.webdriver.common.keys import Keys
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 
-'''
-# snippet para rodar o selenium no modo headless
-from selenium.webdriver.chrome.options import Options
-
-options = Options()
-options.headless = True
-driver = webdriver.Chrome(CHROMEDRIVER_PATH, chrome_options=options)
-'''
-
+# carregamento dos dados da conta pelo .env
 load_dotenv()
-
 dados_conta = {'agencia': os.getenv("AGENCIA"), 'conta': os.getenv("CONTA")}
 senha = os.getenv("SENHA")
 
@@ -29,7 +20,7 @@ senha = os.getenv("SENHA")
 def get_screenshot(my_driver):
     my_dir = os.chdir('C:\\programming\\python-selenium\\screenshots')
     timestamp = (datetime.datetime.now()).strftime('%H%M%S.%f')
-    my_driver.save_screenshot('screenshot' + timestamp + '.png')
+    my_driver.save_screenshot('screenshot_' + timestamp + '.png')
 
 
 def my_func():
@@ -60,7 +51,6 @@ def my_func():
             a = driver.find_element(By.XPATH,
                                     '//a[contains(text(), "' + item + '")]')
             a.click()
-            # time.sleep(1)
 
         driver.find_element_by_id('acessar').click()
 
