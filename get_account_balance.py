@@ -1,5 +1,7 @@
 
+import datetime
 import os
+import threading
 import time
 from dotenv import load_dotenv
 from selenium import webdriver
@@ -22,6 +24,12 @@ load_dotenv()
 
 dados_conta = {'agencia': os.getenv("AGENCIA"), 'conta': os.getenv("CONTA")}
 senha = os.getenv("SENHA")
+
+
+def get_screenshot(my_driver):
+    my_dir = os.chdir('C:\\programming\\python-selenium\\screenshots')
+    timestamp = (datetime.datetime.now()).strftime('%H%M%S.%f')
+    my_driver.save_screenshot('screenshot' + timestamp + '.png')
 
 
 def my_func():
@@ -52,11 +60,11 @@ def my_func():
             a = driver.find_element(By.XPATH,
                                     '//a[contains(text(), "' + item + '")]')
             a.click()
-            time.sleep(1)
+            #time.sleep(1)
 
         driver.find_element_by_id('acessar').click()
 
-        WebDriverWait(driver, 10).until(EC.visibility_of_element_located(
+        WebDriverWait(driver, 20).until(EC.visibility_of_element_located(
             (By.XPATH, '//a[@class="warningView"]'))
             )
 
@@ -66,11 +74,15 @@ def my_func():
 
         print(quadro_saldo.text)
 
-        driver.save_screenshot('screenshot.png')
+        get_screenshot(driver)
 
     except AssertionError:
         print("error!")
 
 
 if __name__ == "__main__":
-    my_func()
+    x = threading.Thread(target=my_func, args=())
+    x.start()
+    time.sleep(10)
+    y = threading.Thread(target=my_func, args=())
+    y.start()
